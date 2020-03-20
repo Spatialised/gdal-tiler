@@ -1,0 +1,31 @@
+FROM ubuntu:19.04
+## comment to say try this one
+
+MAINTAINER Adam Steer <adam@spatialised.net>
+
+ENV TZ=Australia/Sydney
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+#from https://github.com/mapbox/rasterio/issues/1289
+ENV CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive \
+    && apt-get install -y --fix-missing --no-install-recommends \
+    tzdata \
+    unzip \
+    build-essential \
+    ca-certificates \
+    cmake \
+    git \
+    gdal-bin=2.4.0+dfsg-1ubuntu3 \
+    python3=3.7.3-1 \
+    python3-dev \
+    python3-setuptools \
+    python3-gdal=2.4.0+dfsg-1ubuntu3 \
+    python3-pyproj=1.9.6-1 \
+    awscli \
+    python3-boto3 \
+    python3-pip \
+    && pip3 install wheel \
+    && pip3 install rasterio[s3]==1.0.22 shapely==1.6.4 \
+    && rm -rf /var/lib/apt/lists/*

@@ -1,0 +1,17 @@
+{
+    "gridoffsets" :
+        {
+        "zoom": 11,
+        "pad": 4,
+        "side": 0.1,
+        "coloffset": 3280,
+        "rowoffset": 535
+        },
+    "gridbounds":
+        {
+        "xmin": 148.0,
+        "ymin": -36.5,
+        "xmax": 150.5,
+        "ymax": -34
+        }
+    }
